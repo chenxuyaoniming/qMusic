@@ -1,18 +1,36 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div class="home">
+        <keep-alive>
+                <Banner class="boxBanner" ></Banner>            
+            </keep-alive>
+        <Tuijian class="homeTj" ></Tuijian>
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import Banner from '@/components/banner'
+import Tuijian from '@/components/indexTuijian'
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
+    name:'home',
+    props:['isUp'],
+    data(){
+        return{
+
+        }
+    },
+    mounted(){
+        console.log(this.isUp,'option')
+    },
+    components:{
+        Banner,
+        Tuijian
+    }
 }
 </script>
+
+<style lang="scss" scoped>
+.boxBanner{
+    margin-top:0.89rem; 
+}
+</style>
+
