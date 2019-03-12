@@ -1,7 +1,7 @@
 <template>
     <mt-swipe :auto="4000" style="height:3.36rem;width:100%;">
-        <mt-swipe-item v-for="(item,index) in bannerList" :key="index">
-            <img :src="item" :alt="index" class="bannerImg"/>
+        <mt-swipe-item v-for="(item,index) in Ban" :key="index">
+            <img :src="item.imgurl" :alt="index" class="bannerImg"/>
         </mt-swipe-item>
     </mt-swipe>
 </template>
@@ -15,17 +15,14 @@ Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 export default {
     name:'banner',
+    props:['Ban'],
     data(){
         return{
-            bannerList:[]
+            
         }
     },
     mounted(){
-        var _ = this;
-        this.$axios.get('/banner').then(res=>{
-            // console.log(res.data.img,'res')
-            _.bannerList = res.data.img
-        })
+        
     }
 }
 </script>

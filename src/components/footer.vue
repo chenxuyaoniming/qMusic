@@ -1,15 +1,16 @@
 <template>
     <div id="Footer">
+        <audio id="msgAudio"></audio>
+
         <div class="FooterImg">
             <img src="" alt="" class="FooterImgUrl">
         </div>
         <div class="FooterSongText">
-            <p>We Are The Champtions</p>
+            <p>{{song.name? song.name : '还未选择歌曲奥~'}}</p>
             <span>左右切换滑动可选择下一首</span>
         </div>
-        <div class="FooterSongButton">
+        <div class="FooterSongButton" @click="playMenu">
             <div class="FooterSongButtonS">
-
             </div>
         </div>
         <div class="FooterSongList">
@@ -21,6 +22,49 @@
 <script>
 export default {
     name:'Footer',
+    data(){
+        return{
+            pl:false
+        }
+    },
+    computed:{
+        songList(){
+            return this.$store.state.songList
+        },
+        song(){
+            return this.$store.state.sing
+        }
+    },
+    watch:{
+        'song':function(a,b){
+            console.log(a)
+            if(a !== null){
+                this.msg.pause();
+                console.log(a.name)
+                this.play(a.url)
+            }
+        }
+    },
+    mounted(){
+        let msg = document.querySelector('#msgAudio');
+        this.msg = msg;
+    },
+    methods:{
+        play(song){
+            this.msg.src = song;
+            this.pl = true;
+            this.msg.play()
+        },
+        playMenu(){
+            if(this.pl){
+                this.msg.pause();
+                this.pl = false;
+            }else{
+                this.msg.play();
+                this.pl = true;
+            }
+        }
+    }
 
 }
 </script>

@@ -1,25 +1,32 @@
 <template>
     <div class="home">
         <keep-alive>
-                <Banner class="boxBanner" ></Banner>            
+                <Banner class="boxBanner" :Ban='banner'></Banner>            
             </keep-alive>
-        <Tuijian class="homeTj" ></Tuijian>
+        <Tuijian class="homeTj" :news='newSong'></Tuijian>
     </div>
 </template>
 
 <script>
-import Banner from '@/components/banner'
-import Tuijian from '@/components/indexTuijian'
+import http from '../fn/http';
+import Banner from '@/components/banner';
+import Tuijian from '@/components/indexTuijian';
 export default {
     name:'home',
     props:['isUp'],
     data(){
         return{
-
+            banner:'',
+            newSong:[]
         }
     },
     mounted(){
-        console.log(this.isUp,'option')
+        let that = this;
+        http.newsSong().then(res=>{
+            console.log(res,'newsong')
+            that.banner = res.data.banner
+            that.newSong = res.data.data
+        })
     },
     components:{
         Banner,

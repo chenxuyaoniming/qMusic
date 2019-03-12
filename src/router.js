@@ -28,8 +28,18 @@ export default new Router({
           path:'/person',
           name:'person',
           component:()=>import('@/views/person')
+        },
+        {
+          path:'/detail',
+          name:'detail',
+          component:()=>import('@/views/detail')
         }
       ]
+    },
+    {
+      path:'/login/:type',
+      name:'login',
+      component:()=>import('@/views/login')
     }
   ]
 })

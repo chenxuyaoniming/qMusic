@@ -10,6 +10,10 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
+  created(){
+    var uuid = localStorage.getItem('mUuid')
+    this.$store.commit('getUid',uuid)
+  },
   render: h => h(App)
 }).$mount('#app')
 

@@ -46,11 +46,13 @@
                 <span class="forSongSpan">为你推荐歌单</span>
             </h3>
             <div class="forSongList">
-                <div class="forSongListItem" v-for="(item,index) in songList" :key="index">
-                    <img :src="item.imgUrl" alt="" srcset="" class="forSongListItemImg">
+                <div class="forSongListItem" v-for="(item,index) in songList" :key="index"
+                    @click="toDetail(item.specialid)"
+                >
+                    <img :src="item.user_avatar" alt="" srcset="" class="forSongListItemImg">
                     <div class="forSongListItemBox">
                         <p class="forSongListItemFont">
-                            {{item.songName}}
+                            {{item.specialname}}
                         </p>
                     </div>
                 </div> 
@@ -60,8 +62,11 @@
 </template>
 
 <script>
+
+import http from '../fn/http'
 export default {
     name:'tuijian',
+    props:['news'],
     data(){
         return {
             songList:[]
@@ -74,10 +79,16 @@ export default {
     },
     mounted(){
         let _  = this;
-        this.$axios.get('/songList').then(res=>{
-            // console.log(res.data,'list')
-            _.songList = res.data.data
+        http.songMenu().then((res)=>{
+            console.log(res,'menu')
+            _.songList = res.data.plist.list.info.slice(12)
         })
+
+    },
+    methods:{
+        toDetail(id){
+            this.$router.push({name:'detail',query:{id:id}})
+        }
     }
     
 }
@@ -214,7 +225,10 @@ export default {
                         line-height: 0.4rem;
                         text-align: left;
                         text-indent: 0.2rem;
-                        
+                        width: 100%;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
                     }
                 }
             }

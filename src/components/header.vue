@@ -42,7 +42,6 @@ export default {
     },
     methods:{
         fontSizeFat(str){
-            console.log(this.isFat)
             var _ = this;
             switch (str) {
                 case 'home':
