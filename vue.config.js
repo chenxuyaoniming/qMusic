@@ -10,6 +10,14 @@ module.exports = {
                 pathRewrite: {
                   '^/newsSong': ''
                 }
+            },
+            '/searchSong':{
+                target:'http://mobilecdn.kugou.com/api/v3/search/song',
+                changeOrigin:true,
+                ws:true,
+                pathRewrite:{
+                    '^/searchSong':'http://mobilecdn.kugou.com/api/v3/search/song'
+                }
             }
         }
     }

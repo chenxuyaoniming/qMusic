@@ -23,7 +23,6 @@ export default {
     mounted(){
         let that = this;
         http.newsSong().then(res=>{
-            console.log(res,'newsong')
             that.banner = res.data.banner
             that.newSong = res.data.data
         })

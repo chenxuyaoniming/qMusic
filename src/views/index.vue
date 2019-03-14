@@ -28,7 +28,6 @@ export default {
     mounted(){
         let box = this.$refs.box;
         let _  = this;
-        console.log(box,this.transForm,'data')
         box.addEventListener('scroll',function(){
             if(this.scrollTop>150){
                 if(_.isShow){
@@ -63,7 +62,7 @@ export default {
     z-index: 3;
 }
 .homeSearch{
-    position: fixed;
+    position: absolute;
     top: 0.74rem;
     left: 0;
     display: block;
@@ -72,7 +71,8 @@ export default {
     transform: translateY(0);
 }
 .homeSearchTransform{
-    // display: none;
+    display: none;
+    // position: fixed;
     transform: translateY(-1rem);
 }
 section{

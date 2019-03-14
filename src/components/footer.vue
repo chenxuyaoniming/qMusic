@@ -3,7 +3,7 @@
         <audio id="msgAudio"></audio>
 
         <div class="FooterImg">
-            <img src="" alt="" class="FooterImgUrl">
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552468151075&di=cc7f957ca116316de80d99a08e8090da&imgtype=0&src=http%3A%2F%2Fimg.name2012.com%2Fuploads%2Fallimg%2F180315%2F212Z9C16-10.jpg" alt="" :class="[pl ? 'FooterImgUrl FooterImgMove' : 'FooterImgUrl FooterImgStop']">
         </div>
         <div class="FooterSongText">
             <p>{{song.name? song.name : '还未选择歌曲奥~'}}</p>
@@ -40,7 +40,6 @@ export default {
             console.log(a)
             if(a !== null){
                 this.msg.pause();
-                console.log(a.name)
                 this.play(a.url)
             }
         }
@@ -51,9 +50,12 @@ export default {
     },
     methods:{
         play(song){
-            this.msg.src = song;
-            this.pl = true;
-            this.msg.play()
+            let that = this;
+            setTimeout(()=>{
+                that.msg.src = song;
+                that.pl = true;
+                that.msg.play()
+            },500)
         },
         playMenu(){
             if(this.pl){
@@ -93,6 +95,12 @@ export default {
             border-radius: 50%;
             background: red;
             display: block;
+        }
+        .FooterImgMove{
+            animation: crcle 20s linear infinite;
+        }
+        .FooterImgStop{
+            transform: rotate(0);
         }
 
     }
@@ -140,5 +148,10 @@ export default {
             position: absolute;
             top: 0.05rem;
         }
+    }
+    @keyframes crcle{
+        0%{ -webkit-transform: rotate(0deg);}
+        50%{ -webkit-transform: rotate(180deg);}
+        100%{ -webkit-transform: rotate(360deg);}
     }
 </style>

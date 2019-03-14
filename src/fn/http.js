@@ -31,6 +31,17 @@ export default {
                 cmd:'playInfo'
             }
         })
+    },
+    searchSong(txt){
+        return axios.get('/searchSong',{
+            params:{
+                format:'json',
+                keyword:txt,
+                page:1,
+                pagesize:20,
+                showType:1
+            }
+        })
     }
         
     

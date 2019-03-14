@@ -80,7 +80,6 @@ export default {
     mounted(){
         let _  = this;
         http.songMenu().then((res)=>{
-            console.log(res,'menu')
             _.songList = res.data.plist.list.info.slice(12)
         })
 

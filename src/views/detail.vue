@@ -29,18 +29,23 @@ export default {
     },
     mounted(){
         let id = this.$route.query.id;
+        let data = this.$route.query.data;
         let that = this;
-        http.songList(id).then(res=>{
-            console.log(res,'list') 
-            that.list = res.data.list.list.info
+        if(id){
+            http.songList(id).then(res=>{
+                that.list = res.data.list.list.info
 
-        })
+            })
+        };
+        if(data){
+            this.list = data.data.info
+        }
+
     },
     methods:{
         sing(id){
             let that = this;
             http.sing(id).then(res=>{
-                console.log(res.data,'sing')
                 var obj = {name:res.data.fileName,url:res.data.url}
                 that.$store.commit('songUpdate',obj)
 

@@ -9,7 +9,6 @@
 <script>
 import Vue from 'vue';
 import { Swipe, SwipeItem } from 'mint-ui';
-import { mock1 } from '@/mock/mockTem.js'
 import 'mint-ui/lib/style.css';
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
@@ -18,7 +17,7 @@ export default {
     props:['Ban'],
     data(){
         return{
-            
+
         }
     },
     mounted(){
